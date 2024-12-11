@@ -15,7 +15,15 @@ def create_person_list(peoples: list) -> list:
     for pers in peoples:
         person = Person.people[pers["name"]]
         if "wife" in pers and pers["wife"] is not None:
-            setattr(person, "wife", Person.people.get(pers["wife"]))
+            wife = Person.people.get(pers["wife"])
+            if wife:
+                setattr(person, "wife", wife)
+            else:
+                setattr(person, "wife", None)
         if "husband" in pers and pers["husband"] is not None:
-            setattr(person, "husband", Person.people.get(pers["husband"]))
+            husband = Person.people.get(pers["husband"])
+            if husband:
+                setattr(person, "husband", husband)
+            else:
+                setattr(person, "husband", None)
     return person_list
